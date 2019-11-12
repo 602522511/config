@@ -4,6 +4,16 @@ server:
 spring:
   application:
     name: config  #应用名称
+  cloud:
+    bus:
+      refresh:
+        enabled: true
+  rabbitmq: #本地环境不需要配置mq，但是需要启动mq,Springboot会自动连接本地mq
+    host: localhost
+    port: 5672
+    username: user
+    password: 123456
+    
 eureka:
   client:
     service-url:
@@ -16,13 +26,8 @@ eureka:
     prefer-ip-address: true
     
     
-#rabbitmq:#本地环境不需要配置mq
-   #host: localhost
-   #port: 5672
-   #username: user
-   #password: 123456
-
-security:                                #
-  basic:
-    enabled: false
-
+management: 
+    endpoints: 
+        web: 
+            exposure: 
+                include: '*'
